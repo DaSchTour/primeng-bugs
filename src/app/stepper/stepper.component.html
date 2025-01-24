@@ -1,0 +1,17 @@
+<p-stepper [(value)]="activeStep">
+  <p-step-list>
+    @for (step of stepList; track idx; let idx = $index) {
+      <p-step [value]="idx + 1">{{ step.label }}</p-step>
+    }
+  </p-step-list>
+
+  <p-step-panels>
+    @for (step of stepList; track idx; let idx = $index) {
+      <p-step-panel [value]="idx + 1">
+        <ng-template pTemplate="content">
+          <ng-container *ngComponentOutlet="step.component; injector: injector"></ng-container>
+        </ng-template>
+      </p-step-panel>
+    }
+  </p-step-panels>
+</p-stepper>
